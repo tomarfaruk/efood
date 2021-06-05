@@ -27,16 +27,19 @@ class ProductComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _headerWidget(),
-          if (_controller.productList.value?.products != null)
-            ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              children: [
-                ..._controller.productList.value.products
-                    .map((model) => _getCard(model))
-              ],
-            ),
+          if (_controller.productList.value.length != 0)
+            Obx(() {
+              print('change');
+              return ListView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                children: [
+                  ..._controller.productList.value
+                      .map((model) => _getCard(model))
+                ],
+              );
+            }),
         ],
       );
 

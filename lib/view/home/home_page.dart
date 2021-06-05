@@ -21,16 +21,33 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
     _pullRefresh();
+
+    productController = Get.find();
+    controller = new ScrollController()..addListener(_scrollListener);
   }
 
+  @override
+  void dispose() {
+    controller.removeListener(_scrollListener);
+    super.dispose();
+  }
+
+  ProductController productController;
+  ScrollController controller;
   int _currentIndex = 0;
   final List<Widget> _children = [];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  _scrollListener() {
+    print(controller.position.extentAfter);
+    if (controller.position.extentAfter <= 0) {
+      productController.loadMore();
+    }
   }
 
   Future<void> _pullRefresh() async {
@@ -49,6 +66,8 @@ class _HomePageState extends State<HomePage> {
         child: RefreshIndicator(
           onRefresh: _pullRefresh,
           child: ListView(
+            controller: controller,
+            physics: AlwaysScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             children: [
               notifyWidget(),

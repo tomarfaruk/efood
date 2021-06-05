@@ -10,7 +10,7 @@ class Urls {
   static const String menu_url = '/products/set-menu';
   static const String single_product_url = '/products/details/';
   static const String all_product_url =
-      '/products/latest?limit=:limit&&offset=1';
+      '/products/latest?limit=:limit&&offset=:offset';
 
   static const String category_image_url =
       'https://dev.6amtech.com/efood/storage/app/public/category/';
