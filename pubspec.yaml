@@ -14,6 +14,8 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   
+  sqflite: any
+  path_provider: any
   get_storage:  
   get:  
   fluttertoast: ^7.1.1

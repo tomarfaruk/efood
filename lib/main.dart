@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'efood',
-      enableLog: false,
+      enableLog: true,
       logWriterCallback: localLogWriter,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.home_page,
       unknownRoute: GetPage(
-          name: AppRoutes.notfound_page, page: () => UnknownRoutePage()),
+          name: AppRoutes.notfound_page, page: () => UnknownRoutePage(),),
       getPages: AppRoutes.routes,
       routingCallback: (routing) {
         // if (routing.current == '/second') {

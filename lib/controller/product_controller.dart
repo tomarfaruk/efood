@@ -22,9 +22,7 @@ class ProductController extends GetConnect {
     String url = '/products/latest?limit=$limit&&offset=$page';
 
     Response response = await httpClient.get(url);
-    print(response.statusCode);
-    // localLogWriter(response.bodyString.runtimeType.toString());
-    // https://dev.6amtech.com/efood/api/v1/products/latest?limit=10&&offset=1
+    
 
     if (response.isOk) {
       var catList = productModelFromJson(response.bodyString);

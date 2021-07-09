@@ -16,23 +16,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:efood/main.dart';
 import 'package:get/get.dart';
 
+import 'package:http/http.dart' as http;
+
 void main() {
-  // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-  //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(MyApp());
-
-  //   // Verify that our counter starts at 0.
-  //   expect(find.text('0'), findsOneWidget);
-  //   expect(find.text('1'), findsNothing);
-
-  //   // Tap the '+' icon and trigger a frame.
-  //   await tester.tap(find.byIcon(Icons.add));
-  //   await tester.pump();
-
-  //   // Verify that our counter has incremented.
-  //   expect(find.text('0'), findsNothing);
-  //   expect(find.text('1'), findsOneWidget);
-  // });
   final cateogryCoontroller = Get.put(CategoryController());
   final menuCoontroller = Get.put(MenuController());
   final productCoontroller = Get.put(ProductController());
@@ -52,4 +38,17 @@ void main() {
   test("product api call", () async {
     await productCoontroller.getData();
   });
+
+  var url =
+      'https://themes.envytheme.com/ecademy-tutor/wp-json/tutor/v1/courses?order=asc&orderby=ID&paged=1';
+
+  testUrl() async {
+    print("test start");
+
+    http.Response response = await http.get(Uri.parse(url));
+    print("test end");
+    print(response.body);
+  }
+
+  test("description", testUrl);
 }
